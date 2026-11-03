@@ -1,0 +1,18 @@
+# WA Validator MCP Server
+
+> Hosted MCP server that checks whether phone numbers are registered on WhatsApp. Streamable HTTP, no install.
+
+## Connection
+URL: https://wavalidator.com/mcp/
+Header: Authorization: Bearer YOUR_API_KEY (same key as the REST API, from https://wavalidator.com/dashboard/)
+Protocol: JSON-RPC 2.0 over POST; methods initialize, ping, tools/list, tools/call.
+
+## Tools
+- check_whatsapp_number {phone_number: string} — 1 credit. Returns {phone_number, status: valid|invalid|error, credits_remaining}.
+- bulk_check_whatsapp_numbers {numbers: string[] (max 100)} — 1 credit per number. Returns {checked, invalid, total, credits_used, credits_remaining, results[]}.
+
+Errors (bad key, no credits, rate limit) are returned as tool results with isError: true.
+
+## Links
+- Docs: https://wavalidator.com/mcp-docs/
+- REST API: https://wavalidator.com/api-docs/
